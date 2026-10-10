@@ -16,6 +16,7 @@
 - [*] `INFRA-03` completado: red `library`, volúmenes `db-data`/`covers` y healthchecks; app/page/db/api reportan `healthy` al ejecutar Compose.
 - [*] `INFRA-05` completado: README documenta el arranque con `docker compose up --build -d`; API saludable y administrador inicial validado.
 - [*] `INFRA-06` completado: `.\verify-e2e.ps1` prueba login, préstamo, devolución y reporte mediante curl dentro del contenedor `api`.
+- `/` responde `{"status":"ok"}`; `SESSION_DRIVER=file` evita la consulta a la tabla ausente, y `APP_DEBUG=false` no expone trazas.
 
 ## Tareas de este repo (maestro §9.7)
 `INFRA-01`…`INFRA-06`. Modelo: `opencode/deepseek-v4-pro`.
