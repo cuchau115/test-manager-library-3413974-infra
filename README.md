@@ -79,3 +79,16 @@ docker compose --profile tool run --rm tool
 
 El servicio `tool` llama solo a la API; no conecta directamente a PostgreSQL. El parámetro de fecha
 retroactiva para las tres líneas vencidas está limitado al entorno local, según ADR-RL-006.
+
+### Verificación de extremo a extremo
+
+Desde PowerShell, en este directorio y con los servicios levantados, ejecuta:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\verify-e2e.ps1
+```
+
+El script lee las credenciales de `.env`, realiza las solicitudes HTTP con `curl` dentro del
+contenedor `api` y comprueba login, creación de libro y socio, préstamo, devolución de una línea y
+reporte. El cambio de política aplica solo a ese proceso de PowerShell. Cada ejecución crea un
+conjunto nuevo de datos de prueba en la base persistente.

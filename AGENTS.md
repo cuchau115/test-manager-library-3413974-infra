@@ -13,8 +13,9 @@
 
 ## Estado actual del trabajo
 - [*] `INFRA-02` servicios API, React y página estática agregados; `docker compose config --quiet` y `docker compose build app page` pasan.
-- [/] `INFRA-03` en progreso: red `library`, volúmenes `db-data`/`covers` y healthchecks; app/page/db/api comprobados `healthy` con Docker Compose.
-- [/] `INFRA-05` en progreso: README explica arranque y sembrado con un comando; falta validar el stack reiniciable y completar verificación E2E.
+- [*] `INFRA-03` completado: red `library`, volúmenes `db-data`/`covers` y healthchecks; app/page/db/api reportan `healthy` al ejecutar Compose.
+- [*] `INFRA-05` completado: README documenta el arranque con `docker compose up --build -d`; API saludable y administrador inicial validado.
+- [*] `INFRA-06` completado: `.\verify-e2e.ps1` prueba login, préstamo, devolución y reporte mediante curl dentro del contenedor `api`.
 
 ## Tareas de este repo (maestro §9.7)
 `INFRA-01`…`INFRA-06`. Modelo: `opencode/deepseek-v4-pro`.
