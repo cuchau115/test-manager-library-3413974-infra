@@ -11,6 +11,11 @@
 - **Commits pequeños** (`infra: …`) y **push** al fork `cuchau115/test-manager-library-3413974-infra`.
 - Toda tarea exige **evidencia** reproducible.
 
+## Estado actual del trabajo
+- [*] `INFRA-02` servicios API, React y página estática agregados; `docker compose config --quiet` y `docker compose build app page` pasan.
+- [/] `INFRA-03` en progreso: añadir red dedicada, volúmenes compartidos y healthchecks de los servicios.
+- [ ] `INFRA-05` pendiente: documentar arranque integrado con un único comando y las comprobaciones locales.
+
 ## Tareas de este repo (maestro §9.7)
 `INFRA-01`…`INFRA-06`. Modelo: `opencode/deepseek-v4-pro`.
 Dependencias: `INFRA-02`←(T-01.2,APP-11,PAGE-04); `INFRA-05`←T-17.3; `INFRA-06`←(APP-10,TOOL-03).

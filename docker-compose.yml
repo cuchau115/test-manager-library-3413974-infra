@@ -45,6 +45,24 @@ services:
     volumes:
       - covers:/var/www/html/storage/app/covers
 
+  app:
+    build:
+      context: ../test-manager-library-3413974-app
+      dockerfile: Dockerfile
+    container_name: library-app
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-5173}:80"
+
+  page:
+    build:
+      context: ../test-manager-library-3413974-page
+      dockerfile: Dockerfile
+    container_name: library-page
+    restart: unless-stopped
+    ports:
+      - "${PAGE_PORT:-8080}:80"
+
 volumes:
   db-data:
   covers:
