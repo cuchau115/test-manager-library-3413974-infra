@@ -1,0 +1,6 @@
+# Entorno local con secretos: solo se versiona .env.example
+.env
+
+# Datos locales y registros
+.infradata/
+*.log
