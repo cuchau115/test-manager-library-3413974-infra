@@ -13,7 +13,7 @@
 
 ## Estado actual del trabajo
 - [*] `INFRA-02` servicios API, React y página estática agregados; `docker compose config --quiet` y `docker compose build app page` pasan.
-- [/] `INFRA-03` en progreso: añadir red dedicada, volúmenes compartidos y healthchecks de los servicios.
+- [/] `INFRA-03` en progreso: red `library`, volúmenes `db-data`/`covers` y healthchecks configurados; falta comprobar el estado `healthy` con el stack integrado.
 - [ ] `INFRA-05` pendiente: documentar arranque integrado con un único comando y las comprobaciones locales.
 
 ## Tareas de este repo (maestro §9.7)

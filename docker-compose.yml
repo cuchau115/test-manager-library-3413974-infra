@@ -18,6 +18,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - library
 
   api:
     build:
@@ -44,6 +46,14 @@ services:
       - "${API_PORT:-8000}:80"
     volumes:
       - covers:/var/www/html/storage/app/covers
+    healthcheck:
+      test: ["CMD-SHELL", "php -r '$$r=@file_get_contents(\"http://127.0.0.1/health\"); exit(is_string($$r) && str_contains($$r, \"\\\"status\\\":\\\"ok\\\"\") ? 0 : 1);'"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    networks:
+      - library
 
   app:
     build:
@@ -53,6 +63,14 @@ services:
     restart: unless-stopped
     ports:
       - "${APP_PORT:-5173}:80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - library
 
   page:
     build:
@@ -62,7 +80,19 @@ services:
     restart: unless-stopped
     ports:
       - "${PAGE_PORT:-8080}:80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - library
 
 volumes:
   db-data:
   covers:
+
+networks:
+  library:
+    driver: bridge
