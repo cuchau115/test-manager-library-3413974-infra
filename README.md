@@ -49,3 +49,33 @@ antes de las 3:00 p. m.**: no se presenta nada que no esté en GitHub.
 | [`test-manager-library-3413974-page`](https://github.com/code-sena/test-manager-library-3413974-page) | Sitio público estático de presentación |
 | [`test-manager-library-3413974-infra`](https://github.com/code-sena/test-manager-library-3413974-infra) | Contenedores, red, volúmenes y motor de base de datos vacío |
 | [`test-manager-library-3413974-tool`](https://github.com/code-sena/test-manager-library-3413974-tool) | Utilidades: sembrador de datos de demostración |
+
+## Arranque local
+
+Desde este repositorio, copia `.env.example` a `.env` y configura `APP_KEY`, `JWT_SECRET` y las
+credenciales iniciales del administrador. Luego levanta todo el sistema con un solo comando:
+
+```sh
+docker compose up --build -d
+```
+
+Compose espera a que PostgreSQL esté saludable; la API ejecuta sus migraciones y crea el administrador
+de forma idempotente al iniciar. Comprueba el estado y la salud de los servicios con:
+
+```sh
+docker compose ps
+curl -fsS http://localhost:8000/health
+```
+
+La API queda en `http://localhost:8000`, React en `http://localhost:5173` y el sitio público en
+`http://localhost:8080`.
+
+Para generar los datos de demostración (40 libros, 10 socios, 15 préstamos y 3 líneas vencidas),
+ejecuta el perfil opcional del sembrador:
+
+```sh
+docker compose --profile tool run --rm tool
+```
+
+El servicio `tool` llama solo a la API; no conecta directamente a PostgreSQL. El parámetro de fecha
+retroactiva para las tres líneas vencidas está limitado al entorno local, según ADR-RL-006.

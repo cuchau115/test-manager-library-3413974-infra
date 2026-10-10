@@ -89,6 +89,22 @@ services:
     networks:
       - library
 
+  tool:
+    profiles: ["tool"]
+    build:
+      context: ../test-manager-library-3413974-tool
+      dockerfile: Dockerfile
+    container_name: library-tool
+    environment:
+      API_BASE_URL: http://api/api/v1/
+      ADMIN_USERNAME: ${ADMIN_USERNAME}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      - library
+
 volumes:
   db-data:
   covers:
